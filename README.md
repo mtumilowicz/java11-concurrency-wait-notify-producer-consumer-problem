@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/mtumilowicz/java11-concurrency-wait-notify-producer-consumer-problem.svg?branch=master)](https://travis-ci.com/mtumilowicz/java11-concurrency-wait-notify-producer-consumer-problem)
+
 # java11-concurrency-wait-notify-producer-consumer-problem
 
 # preface
