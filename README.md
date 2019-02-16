@@ -6,12 +6,12 @@
 its capacity and the `Consumer` consumes the buffer's data only when `Buffer` is not empty.
 
 ## synchronized
-At the start and at the end of a synchronized method/block, the values of the shared variables in thread’s working
+* At the start and at the end of a synchronized method/block, the values of the shared variables in thread’s working
 memory and the main memory are synchronized.
-* **The thread’s working copy of the shared variables is updated with the values of those
-variables in the main memory just after the thread gets the lock**. 
-* **The values of the shared variables in the main memory are updated with the thread’s working copy
-value just before the thread releases the lock.** 
+* The thread’s working copy of the shared variables is updated with the values of those
+variables in the main memory just after the thread gets the lock. 
+* The values of the shared variables in the main memory are updated with the thread’s working copy
+value just before the thread releases the lock. 
 
 # project description
 We will provide simple solution to producer - consumer problem.
