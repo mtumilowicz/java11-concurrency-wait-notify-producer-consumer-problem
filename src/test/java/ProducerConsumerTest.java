@@ -2,6 +2,7 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 
 import java.util.LinkedList;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -13,7 +14,16 @@ public class ProducerConsumerTest {
     @Test
     public void producer_consumer() {
         var buffer = new Buffer();
-        
+
+        var produced = startProducer(buffer);
+        var consumed = startConsumer(buffer);
+
+        Delay.millis(121);
+
+        assertThat(produced, is(consumed));
+    }
+
+    private LinkedList<String> startProducer(Buffer buffer) {
         var produced = new LinkedList<String>();
         var producer = new Thread(() -> {
             while (true) {
@@ -24,6 +34,12 @@ public class ProducerConsumerTest {
             }
         });
 
+        producer.start();
+
+        return produced;
+    }
+
+    private LinkedList<String> startConsumer(Buffer buffer) {
         var consumed = new LinkedList<String>();
         var consumer = new Thread(() -> {
             while (true) {
@@ -32,11 +48,10 @@ public class ProducerConsumerTest {
             }
         });
 
-        producer.start();
         consumer.start();
         
-        Delay.millis(121);
-        
-        assertThat(produced, is(consumed));
+        return consumed;
     }
+
+
 }

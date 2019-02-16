@@ -8,17 +8,24 @@ class Buffer {
     private final Deque<String> words = new ArrayDeque<>();
 
     synchronized void produce(String word) {
-        waitWhile(() -> !words.isEmpty(), this);
+        waitWhile(this::isNotFull, this);
         this.words.add(word);
         this.notify();
     }
 
     synchronized String consume() {
-        waitWhile(words::isEmpty, this);
+        waitWhile(this::isEmpty, this);
         this.notify();
         return words.poll();
     }
 
+    private boolean isNotFull() {
+        return words.size() < 1;
+    }
+    
+    private boolean isEmpty() {
+        return words.isEmpty();
+    }
 
     private static void waitWhile(Supplier<Boolean> condition, Object object) {
         while (condition.get()) {
