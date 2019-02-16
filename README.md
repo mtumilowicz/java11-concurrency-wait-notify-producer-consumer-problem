@@ -59,9 +59,9 @@ We will provide simple solution to producer - consumer problem.
     var produced = startProducer(buffer);
     var consumed = startConsumer(buffer);
     
-    Delay.millis(121);
+    Delay.millis(200);
     
-    assertThat(produced, is(consumed));
+    assertThat(ListUtils.longestCommonSubsequence(consumed, produced), is(consumed));
     ```
     where:
     * starting producer
