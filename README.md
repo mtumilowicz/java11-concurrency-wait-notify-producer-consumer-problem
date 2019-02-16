@@ -51,3 +51,61 @@ We will provide simple solution to producer - consumer problem.
         }
     }
     ```
+* tests
+    ```
+    var buffer = new Buffer();
+    
+    var produced = startProducer(buffer);
+    var consumed = startConsumer(buffer);
+    
+    Delay.millis(121);
+    
+    assertThat(produced, is(consumed));
+    ```
+    where:
+    * starting producer
+        ```
+        private LinkedList<String> startProducer(Buffer buffer) {
+            var produced = new LinkedList<String>();
+            var producer = new Thread(() -> {
+                while (true) {
+                    Delay.millis(25);
+                    var word = RandomStringUtils.randomAlphabetic(10);
+                    buffer.produce(word);
+                    produced.add(word);
+                }
+            });
+        
+            producer.start();
+        
+            return produced;
+        }
+        ```
+    * starting consumer
+        ```
+        private LinkedList<String> startConsumer(Buffer buffer) {
+            var consumed = new LinkedList<String>();
+            var consumer = new Thread(() -> {
+                while (true) {
+                    Delay.millis(30);
+                    consumed.add(buffer.consume());
+                }
+            });
+        
+            consumer.start();
+            
+            return consumed;
+        }
+        ```
+    * and delay is simply:
+        ```
+        class Delay {
+            static void millis(int millis) {
+                try {
+                    TimeUnit.MILLISECONDS.sleep(millis);
+                } catch (InterruptedException e) {
+                    // not used
+                }
+            }
+        }
+        ```
