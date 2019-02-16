@@ -35,7 +35,7 @@ public class ProducerConsumerTest {
         producer.start();
         consumer.start();
         
-        Delay.millis(120);
+        Delay.millis(121);
         
         assertThat(produced, is(consumed));
     }
