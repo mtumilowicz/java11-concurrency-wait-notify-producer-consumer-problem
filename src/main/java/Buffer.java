@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.function.Supplier;
 
 /**
@@ -6,9 +7,10 @@ import java.util.function.Supplier;
  */
 class Buffer {
     private final Deque<String> words = new ArrayDeque<>();
+    private final int capacity = 1;
 
     synchronized void produce(String word) {
-        waitWhile(this::isNotFull, this);
+        waitWhile(this::isFull, this);
         this.words.add(word);
         this.notify();
     }
@@ -19,8 +21,8 @@ class Buffer {
         return words.poll();
     }
 
-    private boolean isNotFull() {
-        return words.size() < 1;
+    private boolean isFull() {
+        return words.size() == capacity;
     }
     
     private boolean isEmpty() {
