@@ -1,10 +1,12 @@
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Test;
 
 import java.util.LinkedList;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by mtumilowicz on 2019-02-16.
@@ -18,9 +20,9 @@ public class ProducerConsumerTest {
         var produced = startProducer(buffer);
         var consumed = startConsumer(buffer);
 
-        Delay.millis(121);
-
-        assertThat(produced, is(consumed));
+        Delay.millis(200);
+        
+        assertThat(ListUtils.removeAll(consumed, produced), is(empty()));
     }
 
     private LinkedList<String> startProducer(Buffer buffer) {
