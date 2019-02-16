@@ -5,7 +5,6 @@ import org.junit.Test;
 import java.util.LinkedList;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -22,7 +21,7 @@ public class ProducerConsumerTest {
 
         Delay.millis(200);
         
-        assertThat(ListUtils.removeAll(consumed, produced), is(empty()));
+        assertThat(ListUtils.longestCommonSubsequence(consumed, produced), is(consumed));
     }
 
     private LinkedList<String> startProducer(Buffer buffer) {
