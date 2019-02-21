@@ -14,6 +14,13 @@ memory and the main memory are synchronized.
 variables in the main memory just after the thread gets the lock. 
 * The values of the shared variables in the main memory are updated with the thread’s working copy
 value just before the thread releases the lock. 
+* The built-in mechanisms for efficiently waiting for a condition to become
+  true—wait and notify—are tightly bound to intrinsic locking, and can be difficult
+  to use correctly. To create operations that wait for a precondition to become
+  true before proceeding, it is often easier to use existing library classes, such as
+  blocking queues or semaphores, to provide the desired state-dependent behavior.
+  Blocking library classes such as `BlockingQueue`, `Semaphore`, and other synchronizers, 
+  take a look at: https://github.com/mtumilowicz/java11-concurrency-blockingqueue-producer-consumer-problem
 
 # project description
 We will provide simple solution to producer - consumer problem.
