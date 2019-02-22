@@ -7,6 +7,20 @@
 `Buffer` should be synchronized in such way that `Producer` produces data only when the `Buffer` does not exceed 
 its capacity and the `Consumer` consumes the buffer's data only when `Buffer` is not empty.
 
+The familiar division of labor for two people washing the dishes is an example
+of a producer-consumer design: one person washes the dishes and places them
+in the dish rack, and the other person retrieves the dishes from the rack and
+dries them. In this scenario, the dish rack acts as a blocking queue; if there are no
+dishes in the rack, the consumer waits until there are dishes to dry, and if the rack
+fills up, the producer has to stop washing until there is more space. This analogy
+extends to multiple producers (though there may be contention for the sink) and
+multiple consumers; each worker interacts only with the dish rack. No one needs
+to know how many producers or consumers there are, or who produced a given
+item of work.
+
+The producer-consumer pattern also enables several performance benefits.
+  Producers and consumers can execute concurrently
+
 ## synchronized
 * At the start and at the end of a synchronized method/block, the values of the shared variables in thread’s working
 memory and the main memory are synchronized.
