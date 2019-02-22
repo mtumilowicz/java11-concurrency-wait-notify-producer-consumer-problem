@@ -21,7 +21,8 @@ value just before the thread releases the lock.
   blocking queues or semaphores, to provide the desired state-dependent behavior.
   Blocking library classes such as `BlockingQueue`, `Semaphore`, and other synchronizers, 
   take a look at: https://github.com/mtumilowicz/java11-concurrency-blockingqueue-producer-consumer-problem
-
+* One of the most common producer-consumer designs is a thread pool coupled with a work
+  queue; this pattern is embodied in the `Executor` task execution framework
 # project description
 We will provide simple solution to producer - consumer problem.
 * buffer
